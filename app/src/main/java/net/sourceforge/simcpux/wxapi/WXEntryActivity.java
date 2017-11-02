@@ -3,6 +3,7 @@ package net.sourceforge.simcpux.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.ShowMessageFromWX;
 import com.tencent.mm.opensdk.modelmsg.WXAppExtendObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -23,6 +25,10 @@ import net.sourceforge.simcpux.R;
 import net.sourceforge.simcpux.ScanQRCodeLoginActivity;
 import net.sourceforge.simcpux.SendToWXActivity;
 import net.sourceforge.simcpux.ShowFromWXActivity;
+import net.sourceforge.simcpux.util.ToastUtil;
+import net.sourceforge.simcpux.util.Util;
+
+import org.json.JSONObject;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
@@ -32,6 +38,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     // IWXAPI 是第三方app和微信通信的openapi接口
     private IWXAPI api;
+    private Button mBtnPay;
+    private Button mBtnFavorite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
 
-        regBtn = (Button) findViewById(R.id.reg_btn);
+        regBtn = findViewById(R.id.reg_btn);
         regBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,7 +59,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             }
         });
 
-        gotoBtn = (Button) findViewById(R.id.goto_send_btn);
+        gotoBtn = findViewById(R.id.goto_send_btn);
         gotoBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -61,7 +69,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             }
         });
 
-        launchBtn = (Button) findViewById(R.id.launch_wx_btn);
+        launchBtn = findViewById(R.id.launch_wx_btn);
         launchBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -70,7 +78,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             }
         });
 
-        checkBtn = (Button) findViewById(R.id.check_timeline_supported_btn);
+        checkBtn = findViewById(R.id.check_timeline_supported_btn);
         checkBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -84,13 +92,29 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             }
         });
 
-        scanBtn = (Button) findViewById(R.id.scan_qrcode_login_btn);
+        scanBtn = findViewById(R.id.scan_qrcode_login_btn);
         scanBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WXEntryActivity.this, ScanQRCodeLoginActivity.class));
                 finish();
+            }
+        });
+
+        mBtnPay = findViewById(R.id.btnPay);
+        mBtnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mBtnFavorite = findViewById(R.id.btnFavorite);
+        mBtnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

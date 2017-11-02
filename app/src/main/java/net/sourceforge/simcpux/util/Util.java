@@ -1,4 +1,4 @@
-package net.sourceforge.simcpux;
+package net.sourceforge.simcpux.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;

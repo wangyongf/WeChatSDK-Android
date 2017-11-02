@@ -23,6 +23,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import net.sourceforge.simcpux.uikit.CameraUtil;
 import net.sourceforge.simcpux.uikit.MMAlert;
+import net.sourceforge.simcpux.util.Util;
 
 public class GetFromWXActivity extends Activity {
 

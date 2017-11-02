@@ -1,10 +1,11 @@
 package net.sourceforge.simcpux;
 
 import java.io.File;
-import java.net.URL;
 
 import net.sourceforge.simcpux.uikit.CameraUtil;
 import net.sourceforge.simcpux.uikit.MMAlert;
+import net.sourceforge.simcpux.util.Util;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
